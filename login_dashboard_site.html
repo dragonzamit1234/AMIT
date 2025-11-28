@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amit's Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .outer-box {
+      width: 420px;
+      border: 4px solid black;
+      padding: 30px;
+    }
+
+    .login-title {
+      width: 120px;
+      margin: 0 auto 20px auto;
+      text-align: center;
+      border: 3px solid black;
+      padding: 5px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .input-box {
+      width: 100%;
+      border: 3px solid black;
+      padding: 12px;
+      margin: 20px 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .register-box {
+      width: 100%;
+      border: 3px solid black;
+      padding: 18px;
+      margin-top: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>AMIT'S WEBSITE</h1>
+
+<div class="outer-box">
+
+  <div class="login-title">LOGIN</div>
+
+  <input type="text" class="input-box" placeholder="USERNAME" />
+  <input type="password" class="input-box" placeholder="PASSWORD" />
+
+  <div class="register-box">REGISTER ACCOUNT</div>
+
+</div>
+
+
+<!-- DASHBOARD PAGE -->
+<div id="dashboard" style="display:none; margin-top:40px; width:500px; text-align:center;">
+  <h1>DASHBOARD</h1>
+  <h3>Upload a File</h3>
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()" style="padding:10px 20px; margin-top:10px; font-size:16px;">Upload</button>
+
+  <h2 style="margin-top:40px;">Posted Files</h2>
+  <ul id="fileList" style="text-align:left; font-size:18px;"></ul>
+</div>
+
+<script>
+  function login() {
+    document.querySelector('.outer-box').style.display = 'none';
+    setTimeout(() => {
+      document.getElementById('dashboard').style.display = 'block';
+    }, 5000);
+  }
+
+  function uploadFile() {
+    let file = document.getElementById('fileInput').files[0];
+    if (!file) return alert("Please select a file!");
+
+    let li = document.createElement('li');
+    li.textContent = file.name;
+    document.getElementById('fileList').appendChild(li);
+  }
+</script>
+
+</body>
+</html>
