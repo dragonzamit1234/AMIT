@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Login</h2>
+
+<input type="text" id="username" placeholder="Enter username"><br><br>
+
+<input type="password" id="password" placeholder="Enter password">
+<button onclick="togglePassword()">👁</button>
+<br><br>
+
+<button onclick="login()">Login</button>
+
+<p>Don't have an account? <a href="register.html">Create one</a></p>
+
+<script>
+function togglePassword() {
+    let pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    let accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+
+    let found = accounts.find(a => a.user === user && a.pass === pass);
+
+    if (found) {
+        alert("Login successful! Redirecting in 5 seconds...");
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 5000);
+    } else {
+        alert("Incorrect username or password!");
+    }
+}
+</script>
+
+</body>
+</html>
