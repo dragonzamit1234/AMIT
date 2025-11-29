@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Account</h2>
+
+<input type="text" id="newUser" placeholder="Enter username"><br><br>
+
+<input type="password" id="newPass" placeholder="Create password">
+<button onclick="togglePass()">👁</button>
+<br><br>
+
+<button onclick="register()">Register</button>
+
+<p>Already have an account? <a href="login.html">Login here</a></p>
+
+<script>
+function togglePass() {
+    let p = document.getElementById("newPass");
+    p.type = p.type === "password" ? "text" : "password";
+}
+
+function register() {
+    let user = document.getElementById("newUser").value;
+    let pass = document.getElementById("newPass").value;
+
+    if (user.length < 1 || pass.length < 1) {
+        alert("All fields required!");
+        return;
+    }
+
+    let accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+
+    // Check if username exists
+    let exists = accounts.find(a => a.user === user);
+    if (exists) {
+        alert("Username already taken!");
+        return;
+    }
+
+    accounts.push({ user: user, pass: pass });
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+
+    alert("Account created successfully!");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
